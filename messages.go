@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	failedEqualityFormat         = "\nEquality assertion failed:\n\twant: %s \n\t got: %s"
+	failedEqualityFormat         = "\nEquality assertion failed:\n\t want: %s \n\t  got: %s"
 	expectationsOnNil            = "\nEquality assertion failed:\n\t reason: expectations on nil is not permitted"
 	failedInclusionFormat        = "\nInclusion assertion failed:\n\t substring: %s \n\t to be present in: %s"
 	failedInclusionNoErrorFormat = "\nInclusion assertion failed:\n\t substring: %s \n\t to be present, but no error was received"

@@ -13,7 +13,7 @@ func TestNoError(t *testing.T) {
 	err := errors.New("foo")
 	fakeT := newFakeT()
 	assert.NoError(fakeT, err)
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: no error \n\t got: error 'foo'", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: no error \n\t  got: error 'foo'", fakeT.lastMessage())
 }
 
 func TestPanic(t *testing.T) {
@@ -26,11 +26,11 @@ func TestPanic(t *testing.T) {
 	func() {
 		defer assert.Panic(fakeT, "foo")
 	}()
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: panic with message 'foo' \n\t got: no panic", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: panic with message 'foo' \n\t  got: no panic", fakeT.lastMessage())
 
 	func() {
 		defer assert.Panic(fakeT, "foo")
 		panic("bar")
 	}()
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: panic with message 'foo' \n\t got: panic with message 'bar'", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: panic with message 'foo' \n\t  got: panic with message 'bar'", fakeT.lastMessage())
 }

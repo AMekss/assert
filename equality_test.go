@@ -18,10 +18,10 @@ func TestEqualErrors(t *testing.T) {
 	assert.IncludesString(t, "\nEquality assertion failed:\n\t reason: expectations on nil is not permitted", fakeT.lastMessage())
 
 	assert.EqualErrors(fakeT, err, nil)
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: error 'foo' \n\t got: no error", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: error 'foo' \n\t  got: no error", fakeT.lastMessage())
 
 	assert.EqualErrors(fakeT, err, otherErr)
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: error 'foo' \n\t got: error 'bar'", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: error 'foo' \n\t  got: error 'bar'", fakeT.lastMessage())
 }
 
 func TestEqualInt(t *testing.T) {
@@ -29,7 +29,7 @@ func TestEqualInt(t *testing.T) {
 
 	fakeT := newFakeT()
 	assert.EqualInt(fakeT, 10, 20)
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 10 \n\t got: 20", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 10 \n\t  got: 20", fakeT.lastMessage())
 }
 
 func TestEqualFloat32(t *testing.T) {
@@ -37,7 +37,7 @@ func TestEqualFloat32(t *testing.T) {
 
 	fakeT := newFakeT()
 	assert.EqualFloat32(fakeT, float32(2.5), float32(3.5))
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 2.500000 \n\t got: 3.500000", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2.5 \n\t  got: 3.5", fakeT.lastMessage())
 }
 
 func TestEqualFloat64(t *testing.T) {
@@ -45,7 +45,7 @@ func TestEqualFloat64(t *testing.T) {
 
 	fakeT := newFakeT()
 	assert.EqualFloat64(fakeT, float64(2.5), float64(3.5))
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 2.500000 \n\t got: 3.500000", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2.5 \n\t  got: 3.5", fakeT.lastMessage())
 }
 
 func TestEqualStrings(t *testing.T) {
@@ -53,13 +53,13 @@ func TestEqualStrings(t *testing.T) {
 
 	fakeT := newFakeT()
 	assert.EqualStrings(fakeT, "foo", "bar")
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 'foo' \n\t got: 'bar'", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 'foo' \n\t  got: 'bar'", fakeT.lastMessage())
 }
 
 func TestEqualStringsWithReporterFunc(t *testing.T) {
 	fakeT := newFakeT()
 	assert.EqualStrings(fakeT.Errorf, "foo", "bar")
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 'foo' \n\t got: 'bar'", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 'foo' \n\t  got: 'bar'", fakeT.lastMessage())
 }
 
 func TestEqualTime(t *testing.T) {
@@ -70,5 +70,5 @@ func TestEqualTime(t *testing.T) {
 	t2 := time.Date(2018, 2, 22, 12, 35, 0, 0, time.UTC)
 	assert.EqualTime(fakeT, t1, t2)
 
-	assert.IncludesString(t, "\nEquality assertion failed:\n\twant: 2018-02-22 12:30:00 +0000 UTC \n\t got: 2018-02-22 12:35:00 +0000 UTC", fakeT.lastMessage())
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2018-02-22 12:30:00 +0000 UTC \n\t  got: 2018-02-22 12:35:00 +0000 UTC", fakeT.lastMessage())
 }

@@ -15,7 +15,7 @@ func reportError(reporterIface interface{}, msg fmt.Stringer) {
 	source := ""
 	_, file, line, ok := runtime.Caller(2)
 	if ok {
-		source = fmt.Sprintf("(%s:%d)", file, line)
+		source = fmt.Sprintf("\n\t line: %s:%d", file, line)
 	}
 
 	reporterFrom(reporterIface)("%s %s", msg, source)
