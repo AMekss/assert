@@ -7,8 +7,6 @@ import (
 	"runtime"
 )
 
-type reporterFunction func(format string, args ...interface{})
-
 type testingT interface {
 	Errorf(format string, args ...interface{})
 }
