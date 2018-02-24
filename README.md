@@ -1,4 +1,6 @@
 # Assert
+[![Build Status](https://travis-ci.org/AMekss/assert.svg?branch=master)](https://travis-ci.org/AMekss/assert)
+
 Go testing micro library. This library is small yet opinionated as it aims to be as simple as possible while provide testing utilities for 80% of the cases in order to remove boilerplate from the testing code, improve test expressiveness and standardize test failure messages. All the edge cases (the rest 20%) are not covered and have to be tested the way you would do without this library. Before you decide on using it please read and consider [this](https://golang.org/doc/faq#testing_framework). On the other hand if you're looking for a fully flagged all in one testing solution, this is not the place, however [testify](https://github.com/stretchr/testify) might be it.
 
 ## Usage example
