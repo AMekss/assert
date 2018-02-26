@@ -48,12 +48,12 @@ For more examples please check [Docs](#docs) section below
 
 ## Installation
 ```
-$ go get github.com/AMekss/assert
+$ go get github.com/amekss/assert
 ```
 
 (optional) To run unit tests:
 ```
-$ cd $GOPATH/src/github.com/AMekss/assert
+$ cd $GOPATH/src/github.com/amekss/assert
 $ go test -cover
 ```
 
