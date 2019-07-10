@@ -1,7 +1,10 @@
 // Package assert - makes sure that 2 things are the same
 package assert
 
-import "time"
+import (
+	m "math"
+	"time"
+)
 
 // EqualErrors - asserts that specific error was produced
 func EqualErrors(reporter interface{}, want, got error) {
@@ -24,9 +27,29 @@ func EqualFloat32(reporter interface{}, want, got float32) {
 	}
 }
 
+// EqualFloat32Tol - asserts that two floats are the same,
+// allowing for (relative) tolerance given as a parameter
+func EqualFloat32Tol(reporter interface{}, want, got, relTol float32) {
+	if want == 0.0 && got != 0.0 {
+		reportError(reporter, &failedFloatCompMsg{float64(want), float64(got)})
+	} else if m.Abs(float64((want-got)/want)) > float64(relTol) {
+		reportError(reporter, &failedFloatCompMsg{float64(want), float64(got)})
+	}
+}
+
 // EqualFloat64 - asserts that two floats are the same
 func EqualFloat64(reporter interface{}, want, got float64) {
 	if want != got {
+		reportError(reporter, &failedFloatCompMsg{want, got})
+	}
+}
+
+// EqualFloat64Tol - asserts that two floats are the same,
+// allowing for (relative) tolerance given as a parameter
+func EqualFloat64Tol(reporter interface{}, want, got, relTol float64) {
+	if want == 0.0 && got != 0.0 {
+		reportError(reporter, &failedFloatCompMsg{want, got})
+	} else if m.Abs((want-got)/want) > relTol {
 		reportError(reporter, &failedFloatCompMsg{want, got})
 	}
 }
