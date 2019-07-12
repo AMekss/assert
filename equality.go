@@ -2,9 +2,15 @@
 package assert
 
 import (
-	m "math"
 	"time"
 )
+
+func abs(x float64) float64 {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
 
 // EqualErrors - asserts that specific error was produced
 func EqualErrors(reporter interface{}, want, got error) {
@@ -32,7 +38,7 @@ func EqualFloat32(reporter interface{}, want, got float32) {
 func EqualFloat32Tol(reporter interface{}, want, got, relTol float32) {
 	if want == 0.0 && got != 0.0 {
 		reportError(reporter, &failedFloatCompMsg{float64(want), float64(got)})
-	} else if m.Abs(float64((want-got)/want)) > float64(relTol) {
+	} else if abs(float64((want-got)/want)) > float64(relTol) {
 		reportError(reporter, &failedFloatCompMsg{float64(want), float64(got)})
 	}
 }
@@ -49,7 +55,7 @@ func EqualFloat64(reporter interface{}, want, got float64) {
 func EqualFloat64Tol(reporter interface{}, want, got, relTol float64) {
 	if want == 0.0 && got != 0.0 {
 		reportError(reporter, &failedFloatCompMsg{want, got})
-	} else if m.Abs((want-got)/want) > relTol {
+	} else if abs((want-got)/want) > relTol {
 		reportError(reporter, &failedFloatCompMsg{want, got})
 	}
 }

@@ -2,7 +2,6 @@ package assert_test
 
 import (
 	"errors"
-	m "math"
 	"testing"
 	"time"
 
@@ -43,10 +42,6 @@ func TestEqualFloat32(t *testing.T) {
 
 func TestEqualFloat32Tol(t *testing.T) {
 	assert.EqualFloat32Tol(t, float32(100.0), float32(101.0), float32(0.02))
-
-	fakeT := newFakeT()
-	assert.EqualFloat32Tol(fakeT, float32(100.0), float32(102.0), float32(0.01))
-	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 100.0 \n\t  got: 102.0", fakeT.lastMessage())
 }
 
 func TestEqualFloat64(t *testing.T) {
@@ -58,11 +53,7 @@ func TestEqualFloat64(t *testing.T) {
 }
 
 func TestEqualFloat64Tol(t *testing.T) {
-	assert.EqualFloat64(t, float64(100.0), float64(101.0), float64(0.02))
-
-	fakeT := newFakeT()
-	assert.EqualFloat64Tol(fakeT, float64(100.0), float64(102.0), float64(0.01))
-	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 100.0 \n\t  got: 102.0", fakeT.lastMessage())
+	assert.EqualFloat64Tol(t, float64(100.0), float64(101.0), float64(0.02))
 }
 
 func TestEqualStrings(t *testing.T) {

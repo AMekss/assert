@@ -74,6 +74,15 @@ func TestEquality(t *testing.T) {
 ```
 **Note:** There is no `assert.Equal` method and no current plans on implementing one. IMHO well written tests serves as live documentation and `assert.Equal(t, a, b)` doesn't reads as good as for example `assert.EqualStrings(t, a, b)` since just by looking at it its quite clear that we're testing strings here.
 
+### Equality within a tolerance
+```go
+func TestEqualityTol(t *testing.T) {
+    // asserts that two values are the same within a relative tolerance (f.ex. 2%)
+    assert.EqualFloat32Tol(t, expectedFloat32, float32(101.0), float32(0.02))
+    assert.EqualFloat64Tol(t, expectedFloat64, float64(101.0), float64(0.02))
+}
+```
+
 ### Boolean
 ```go
 func TestBoolean(t *testing.T) {
