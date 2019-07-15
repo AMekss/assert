@@ -40,12 +40,20 @@ func TestEqualFloat32(t *testing.T) {
 	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2.5 \n\t  got: 3.5", fakeT.lastMessage())
 }
 
+func TestEqualFloat32Tol(t *testing.T) {
+	assert.EqualFloat32Tol(t, float32(100.0), float32(101.0), float32(0.02))
+}
+
 func TestEqualFloat64(t *testing.T) {
 	assert.EqualFloat64(t, float64(2.5), float64(2.5))
 
 	fakeT := newFakeT()
 	assert.EqualFloat64(fakeT, float64(2.5), float64(3.5))
 	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2.5 \n\t  got: 3.5", fakeT.lastMessage())
+}
+
+func TestEqualFloat64Tol(t *testing.T) {
+	assert.EqualFloat64Tol(t, float64(100.0), float64(101.0), float64(0.02))
 }
 
 func TestEqualStrings(t *testing.T) {
