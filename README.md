@@ -62,7 +62,7 @@ $ go test -cover
 ### Equality
 ```go
 func TestEquality(t *testing.T) {
-    // asserts that to values are the same
+    // asserts that two values are the same
     assert.EqualStrings(t, expectedStr, "foo")
     assert.EqualErrors(t, expectedErr, errors.New("bar"))
     assert.EqualInt(t, expectedInt, 10)
