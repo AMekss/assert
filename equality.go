@@ -73,3 +73,18 @@ func EqualTime(reporter interface{}, want, got time.Time) {
 		reportError(reporter, &failedTimeCompMsg{want, got})
 	}
 }
+
+// EqualTimeTol - asserts that two time.Time are the same,
+// allowing for (relative) tolerance given as a parameter
+func EqualTimeTol(reporter interface{}, want, got time.Time, relTol time.Duration) {
+	var diff time.Duration
+	if want.After(got) {
+		diff = want.Sub(got)
+	} else {
+		diff = got.Sub(want)
+	}
+
+	if diff > relTol {
+		reportError(reporter, &failedTimeCompMsg{want, got})
+	}
+}
