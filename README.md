@@ -77,7 +77,9 @@ func TestEquality(t *testing.T) {
 ### Equality within a tolerance
 ```go
 func TestEqualityTol(t *testing.T) {
-    // asserts that two values are the same within a relative tolerance (f.ex. 2%)
+    // asserts that two values are the same within a relative tolerance
+
+    // tolerance is expressed in percentage for float comparisons (e.g. 2%)
     assert.EqualFloat32Tol(t, expectedFloat32, float32(101.0), float32(0.02))
     assert.EqualFloat64Tol(t, expectedFloat64, float64(101.0), float64(0.02))
 }
