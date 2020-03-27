@@ -80,3 +80,16 @@ func TestEqualTime(t *testing.T) {
 
 	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2018-02-22 12:30:00 +0000 UTC \n\t  got: 2018-02-22 12:35:00 +0000 UTC", fakeT.lastMessage())
 }
+
+func TestEqualTimeTol(t *testing.T) {
+	t1 := time.Date(2020, time.January, 1, 11, 0, 0, 0, time.UTC)
+	t2 := time.Date(2020, time.January, 1, 11, 1, 0, 0, time.UTC)
+	tol, _ := time.ParseDuration("1m")
+	assert.EqualTimeTol(t, t1, t2, tol)
+
+	t3 := time.Date(2020, time.January, 1, 11, 2, 0, 0, time.UTC)
+	fakeT := newFakeT()
+	assert.EqualTimeTol(fakeT, t1, t3, tol)
+
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2020-01-01 11:00:00 +0000 UTC \n\t  got: 2020-01-01 11:02:00 +0000 UTC", fakeT.lastMessage())
+}
