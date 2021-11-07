@@ -39,3 +39,7 @@ func formatStr(in string) string {
 func formatTime(in time.Time) string {
 	return fmt.Sprint(in)
 }
+
+func formatInterface(in interface{}) string {
+	return fmt.Sprintf("%#v", in)
+}

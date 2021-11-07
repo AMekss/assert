@@ -108,6 +108,8 @@ func TestNils(t *testing.T) {
     assert.NoError(t, err)
     // asserts panic is produced
     defer assert.Panic(t, "foo")
+    // assert that nil is received
+    assert.IsNil(t, nil)
 }
 ```
 

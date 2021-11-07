@@ -27,6 +27,7 @@ type failedErrorIncludeMsg struct {
 	expectedPhrase string
 	got            error
 }
+type failedIsNilCompMsg struct{ got interface{} }
 
 func (msg *failedPanicMsg) String() string {
 	return fmt.Sprintf(failedEqualityFormat, formatPanic(msg.want), formatPanic(msg.got))
@@ -62,6 +63,10 @@ func (msg *failedStrCompMsg) String() string {
 
 func (msg *failedTimeCompMsg) String() string {
 	return fmt.Sprintf(failedEqualityFormat, formatTime(msg.want), formatTime(msg.got))
+}
+
+func (msg *failedIsNilCompMsg) String() string {
+	return fmt.Sprintf(failedEqualityFormat, "Nil", formatInterface(msg.got))
 }
 
 // Inclusion
