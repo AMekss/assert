@@ -28,7 +28,22 @@ func Panic(reporter interface{}, withMessage string) {
 
 // IsNil - asserts that provided interface has nil value
 func IsNil(reporter interface{}, got interface{}) {
-	if !(got == nil || reflect.ValueOf(got).Kind() == reflect.Ptr && reflect.ValueOf(got).IsNil()) {
+	if !isNil(got) {
 		reportError(reporter, &failedIsNilCompMsg{got})
 	}
+}
+
+// https://github.com/goccy/go-reflect/blob/b725637422e43c3e5556f930b7f5c0d592d0dbaa/reflect.go#L886-L892
+// returns true if value is nil or false otherwise
+func isNil(v interface{}) bool {
+	if v == nil {
+		return true
+	}
+
+	switch reflect.ValueOf(v).Kind() {
+	case reflect.Chan, reflect.Func, reflect.Interface, reflect.Map, reflect.Ptr, reflect.Slice, reflect.UnsafePointer:
+		return reflect.ValueOf(v).IsNil()
+	}
+
+	return false
 }

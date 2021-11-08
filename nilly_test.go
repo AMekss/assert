@@ -38,8 +38,20 @@ func TestPanic(t *testing.T) {
 func TestIsNil(t *testing.T) {
 	assert.IsNil(t, nil)
 
-	var nilly interface{} = nil
-	assert.IsNil(t, nilly)
+	var nilInterface interface{} = nil
+	assert.IsNil(t, nilInterface)
+
+	var nilFunc func() = nil
+	assert.IsNil(t, nilFunc)
+
+	var nilMap map[string]string = nil
+	assert.IsNil(t, nilMap)
+
+	var nilSlice []string = nil
+	assert.IsNil(t, nilSlice)
+
+	var nilChan chan int = nil
+	assert.IsNil(t, nilChan)
 
 	fakeT := newFakeT()
 	type sliceVal []string
