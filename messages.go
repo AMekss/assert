@@ -3,6 +3,7 @@ package assert
 
 import (
 	"fmt"
+	"github.com/shopspring/decimal"
 	"time"
 )
 
@@ -22,6 +23,7 @@ type failedIntCompMsg struct{ want, got int }
 type failedFloatCompMsg struct{ want, got float64 }
 type failedStrCompMsg struct{ want, got string }
 type failedTimeCompMsg struct{ want, got time.Time }
+type failedDecimalCompMsg struct{ want, got decimal.Decimal }
 type failedStrIncludeMsg struct{ expectedPhrase, got string }
 type failedErrorIncludeMsg struct {
 	expectedPhrase string
@@ -67,6 +69,10 @@ func (msg *failedTimeCompMsg) String() string {
 
 func (msg *failedIsNilCompMsg) String() string {
 	return fmt.Sprintf(failedEqualityFormat, "Nil", formatInterface(msg.got))
+}
+
+func (msg *failedDecimalCompMsg) String() string {
+	return fmt.Sprintf(failedEqualityFormat, formatDecimal(msg.want), formatDecimal(msg.got))
 }
 
 // Inclusion

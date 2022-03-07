@@ -3,6 +3,7 @@ package assert
 
 import (
 	"fmt"
+	"github.com/shopspring/decimal"
 	"time"
 )
 
@@ -42,4 +43,8 @@ func formatTime(in time.Time) string {
 
 func formatInterface(in interface{}) string {
 	return fmt.Sprintf("%#v", in)
+}
+
+func formatDecimal(in decimal.Decimal) string {
+	return in.String()
 }

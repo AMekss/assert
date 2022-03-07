@@ -2,6 +2,7 @@
 package assert
 
 import (
+	"github.com/shopspring/decimal"
 	"time"
 )
 
@@ -71,5 +72,12 @@ func EqualStrings(reporter interface{}, want, got string) {
 func EqualTime(reporter interface{}, want, got time.Time) {
 	if !got.Equal(want) {
 		reportError(reporter, &failedTimeCompMsg{want, got})
+	}
+}
+
+// EqualDecimal - asserts that two decimals are the same
+func EqualDecimal(reporter interface{}, want, got decimal.Decimal) {
+	if !got.Equal(want) {
+		reportError(reporter, &failedDecimalCompMsg{want, got})
 	}
 }
