@@ -2,6 +2,7 @@
 package assert
 
 import (
+	"github.com/shopspring/decimal"
 	"time"
 )
 
@@ -86,5 +87,12 @@ func EqualTimeTol(reporter interface{}, want, got time.Time, relTol time.Duratio
 
 	if diff > relTol {
 		reportError(reporter, &failedTimeCompMsg{want, got})
+	}
+}
+
+// EqualDecimal - asserts that two decimals are the same
+func EqualDecimal(reporter interface{}, want, got decimal.Decimal) {
+	if !got.Equal(want) {
+		reportError(reporter, &failedDecimalCompMsg{want, got})
 	}
 }
