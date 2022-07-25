@@ -75,6 +75,21 @@ func EqualTime(reporter interface{}, want, got time.Time) {
 	}
 }
 
+// EqualTimeTol - asserts that two time.Time are the same,
+// allowing for (relative) tolerance given as a parameter
+func EqualTimeTol(reporter interface{}, want, got time.Time, relTol time.Duration) {
+	var diff time.Duration
+	if want.After(got) {
+		diff = want.Sub(got)
+	} else {
+		diff = got.Sub(want)
+	}
+
+	if diff > relTol {
+		reportError(reporter, &failedTimeCompMsg{want, got})
+	}
+}
+
 // EqualDecimal - asserts that two decimals are the same
 func EqualDecimal(reporter interface{}, want, got decimal.Decimal) {
 	if !got.Equal(want) {
