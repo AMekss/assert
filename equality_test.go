@@ -2,6 +2,7 @@ package assert_test
 
 import (
 	"errors"
+	"github.com/shopspring/decimal"
 	"testing"
 	"time"
 
@@ -79,4 +80,13 @@ func TestEqualTime(t *testing.T) {
 	assert.EqualTime(fakeT, t1, t2)
 
 	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 2018-02-22 12:30:00 +0000 UTC \n\t  got: 2018-02-22 12:35:00 +0000 UTC", fakeT.lastMessage())
+}
+
+func TestEqualDecimal(t *testing.T) {
+	d0 := decimal.Zero
+	d1 := decimal.NewFromFloat(1)
+
+	fakeT := newFakeT()
+	assert.EqualDecimal(fakeT, d0, d1)
+	assert.IncludesString(t, "\nEquality assertion failed:\n\t want: 0 \n\t  got: 1", fakeT.lastMessage())
 }
